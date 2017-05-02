@@ -40,6 +40,37 @@ class FlightAwareClient
     		->FlightInfoExResult->flights;
     }
 
+
+    public function getFlightEstimatedArrivalTime($idFlight, $howMany = 1, $offset = 0) {
+
+        $idFlight = strtoupper($idFlight);
+        $flightInfo = $this->flightInfoEx($idFlight, $howMany, $offset);
+
+        $flightEstimatedArrivalTime = "";
+        if ( isset($flightInfo[0]->estimatedarrivaltime) && trim(isset($flightInfo[0]->estimatedarrivaltime)) != "" ) {
+            $flightEstimatedArrivalTime = $flightInfo[0]->estimatedarrivaltime;
+            return $flightEstimatedArrivalTime;
+        }
+
+        return false;
+    }
+
+
+    public function getFlightActualArrivalTime($idFlight, $howMany = 1, $offset = 0) {
+
+        $idFlight = strtoupper($idFlight);
+        $flightInfo = $this->flightInfoEx($idFlight, $howMany, $offset);
+
+        $flightActualArrivalTime = "";
+        if ( isset($flightInfo[0]->actualarrivaltime) && trim(isset($flightInfo[0]->actualarrivaltime)) != "" ) {
+            $flightActualArrivalTime = $flightInfo[0]->actualarrivaltime;
+            return $flightActualArrivalTime;
+        }
+
+        return false;
+    }
+
+
     public function getFlightId($ident, $departure_time) {
     	if ($departure_time instanceof DateTime) {
     		$departure_time = $departure_time->getTimestamp();
