@@ -39,7 +39,7 @@ ini_set('display_errors', 1);
 
 			if ($_GET["function"] == "getFlightEstimatedArrivalTime") {
 
-				$id_flight = strtoupper("VY2591");
+				$id_flight = strtoupper("DLH61A");
 				$inFlightInfo = $faClient->getFlightEstimatedArrivalTime($id_flight, 1, 0);
 				print "depurar getFlightEstimatedArrivalTime: <br/><pre>";
 				print_r($inFlightInfo);

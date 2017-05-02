@@ -48,7 +48,9 @@ class FlightAwareClient
 
         $flightEstimatedArrivalTime = "";
         if ( isset($flightInfo[0]->estimatedarrivaltime) && trim(isset($flightInfo[0]->estimatedarrivaltime)) != "" ) {
-            $flightEstimatedArrivalTime = $flightInfo[0]->estimatedarrivaltime;
+            $flightEstimatedArrivalTime = date("d/m/Y\TH:i\Z", $flightInfo[0]->estimatedarrivaltime);
+            $flightEstimatedArrivalTime = str_replace("T", " - ", $flightEstimatedArrivalTime);
+            $flightEstimatedArrivalTime = str_replace("Z", "", $flightEstimatedArrivalTime);
             return $flightEstimatedArrivalTime;
         }
 
@@ -63,7 +65,9 @@ class FlightAwareClient
 
         $flightActualArrivalTime = "";
         if ( isset($flightInfo[0]->actualarrivaltime) && trim(isset($flightInfo[0]->actualarrivaltime)) != "" ) {
-            $flightActualArrivalTime = $flightInfo[0]->actualarrivaltime;
+            $flightActualArrivalTime = date("d/m/Y\TH:i\Z", $flightInfo[0]->actualarrivaltime);
+            $flightActualArrivalTime = str_replace("T", " - ", $flightActualArrivalTime);
+            $flightActualArrivalTime = str_replace("Z", "", $flightActualArrivalTime);
             return $flightActualArrivalTime;
         }
 
