@@ -14,17 +14,18 @@ ini_set('display_errors', 1);
 
 		<?php
 
+		    require_once dirname(__FILE__).'/config.php';
 		    require_once dirname(__FILE__).'/FlightAwareClient.php';
 
-			$faClient = new FlightAwareClient('username', 'api_key');
+			$faClient = new FlightAwareClient(user_name, api_key);
 
 			if ($_GET["function"] == "inFlightInfo") {
-				/*
-				$result = $paymentHubIntegration->startTransaction();
-				print "<pre>";
-				print_r($result);
+
+				$id_flight = strtoupper("VY2591");
+				$inFlightInfo = $faClient->inFlightInfo($id_flight); // reformats waypoints with distinct latitude and longitude array keys
+				print "depurar flight info: <br/><pre>";
+				print_r($inFlightInfo);
 				print "</pre>";
-				*/
 			}
 
 		?>
